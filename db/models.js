@@ -11,7 +11,7 @@ conn.on('connected', () => {
 })
 
 //创建一个Model
-const userSchema=mongose.Schema({
+const userSchema = mongose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     type: {type: String, required: true},
@@ -22,7 +22,20 @@ const userSchema=mongose.Schema({
     salary: {type: String},
 })
 
-const UserModel=mongose.model('user',userSchema)
+const UserModel = mongose.model('user', userSchema)
 
-exports.UserModel=UserModel
+//创建聊天
+const chatSchema = mongose.Schema({
+    from: {type: String, required: true},
+    to: {type: String, required: true},
+    chat_id: {type: String, required: true},
+    content: {type: String, required: true},
+    read: {type: Boolean, default: false},//是否已读
+    create_time: {type: Number}
+})
+
+const ChatModel = mongose.model("chat", chatSchema)
+
+exports.UserModel = UserModel
+exports.ChatModel = ChatModel
 
